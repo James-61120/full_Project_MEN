@@ -1,0 +1,26 @@
+<div class="container mt-4">
+  <a href="/category/add" class="btn btn-success">Add category</a>
+   <h4 class="mt-3">List categories</h4>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Category Name</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+            <%
+            categories.map(cate=>{%>
+                <tr>
+                    <th scope="row"><%= cate.name %></th>
+                    <td><a href="/category/edit/<%=cate._id%>?_method=PUT" class="btn btn-secondary">Edit</a></td>
+                    <td>
+                      <%-include('../parts/formDelete',{url:`/category/delete/${cate._id}`})%>
+                    </td>
+                </tr>
+                <%})
+            %>
+        </tbody>
+      </table>
+</div>

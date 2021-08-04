@@ -1,0 +1,33 @@
+<div class="container w-50 mt-5">
+    <h3>Add new product</h3>
+    <form action="/product/" method = "POST">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="" name="name" placeholder="Product name" value="<%=products.name%>">
+            <label for="floatingInput">Product name</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="" name="price" placeholder="Price" value="<%=products.price%>">
+            <label for="floatingInput">Price</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="" name="quantity" placeholder="Quantity" value="<%=products.quantity%>">
+            <label for="floatingInput">Quantity</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="" name="info" placeholder="Information" value="<%=products.info%>">
+            <label for="floatingInput">Information</label>
+          </div>
+          <div class="form-floating mb-3">
+           <select name="category">
+              <%
+                categories.map(cate=>{%>
+                    <option value="<%= cate._id%>"><%=cate.name%></option>
+                  <%})
+              %>
+           </select>
+          </div>
+          <div class="form-floating">
+            <button type="submit" class="btn btn-primary" value="Save">Save</button>
+          </div>
+    </form>
+</div>

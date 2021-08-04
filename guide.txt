@@ -1,0 +1,7 @@
+ 1. npm init -y
+ 2. npm start
+ 3. npm install --save-dev nodemon
+ 4.
+
+ 5. npm install express mongodb ejs
+ 6.npm install express-ejs-layouts
