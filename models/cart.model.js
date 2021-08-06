@@ -4,4 +4,4 @@ function cart(){
         this.items[id]=product
     }
 }
-module.exports=cart
+module.exports = cart
