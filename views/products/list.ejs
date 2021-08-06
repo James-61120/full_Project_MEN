@@ -8,6 +8,7 @@
               <th scope="col">Price</th>
               <th scope="col">Quantity</th>
               <th scope="col">Information</th>
+              <th scope="col">Image</th>
               <th scope="col">Category</th>
               <th scope="col">Edit</th>
               <th scope="col">Delete</th>
@@ -21,6 +22,7 @@
                       <th scope="row"><%= pro.price %></th>
                       <th scope="row"><%= pro.quantity %></th>
                       <th scope="row"><%= pro.info%></th>
+                      <th scope="row"><img src="<%=pro.imageSrc%>" width="50px" alt=""></th>
                       <th scope="row"><%= pro.category.name%></th>
                       <td><a href="product/edit/<%=pro._id%>" class="btn btn-secondary">Edit</a></td>
                       <td>

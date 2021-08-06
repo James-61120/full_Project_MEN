@@ -4,6 +4,7 @@ const categoryRouter = require('./routers/category')
 const productRouter = require('./routers/product')
 const expressLayouts = require('express-ejs-layouts')
 const methodOverride = require('method-override')
+const session = require('express-session')
 require('dotenv').config()
 const mongoose = require('mongoose')
 const app = express()
@@ -26,7 +27,7 @@ const connectFunction = async()=>{
     }
 }
 connectFunction()
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: false,limit:'10mb'}))
 app.set('view engine','ejs')
 app.set('layout','layouts/layout')
 

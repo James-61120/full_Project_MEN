@@ -1,12 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    Home page
-</body>
-</html>
+<div class="container"> 
+    <div class="row">
+        <%
+        products.map(pro=>{%>
+            <div class="col-sm-6 col-md-4">
+                <div class="product-card">
+                    <div class="img">
+                        <img src="<%=pro.imageSrc%>" alt="">
+                    </div>
+                    <div class="content">
+                        <h4><%= pro.name  %></h4>
+                        <p><%= pro.price  %></p>
+                        <a href="/cart" class="btn btn-primary">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            <%})
+        %>
+    </div>
+</div>

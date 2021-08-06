@@ -7,7 +7,7 @@ const router = express.Router()
 router.get('/',async(req,res)=>{
     try{
         const products = await productModel.find().populate('category',['name'])
-        console.log(products)
+        /*console.log(products)*/
         res.render('products/list',{products:products})
     }
     catch(e)
@@ -25,6 +25,7 @@ router.get('/add',async(req,res)=>{
 
 router.post('/',async(req,res)=>
 {
+    
     try{
         const productNew = new productModel({
             name:req.body.name,
@@ -33,8 +34,14 @@ router.post('/',async(req,res)=>
             quantity:req.body.quantity,
             category:req.body.category,
         })
-        await productNew.save()
-        res.redirect('/product')
+        if(req.body.image != null && req.body.image !=='')
+        {
+            const imageEncode = JSON.parse(req.body.image)
+            productNew.imageType = imageEncode.type 
+            productNew.imageData = new Buffer.from(imageEncode.data,'base64') 
+        }
+    await productNew.save()
+    res.redirect('/product')
     }
     catch(e)
     {

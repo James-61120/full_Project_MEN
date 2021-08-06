@@ -17,8 +17,8 @@ router.get('/',async(req,res)=>{
 })
 /*--------------------------------------------ADD*/
 router.get('/add',(req,res)=>{
-    // const category=new categoryModel()
-    res.render('categories/add')
+    const category=new categoryModel()
+    res.render('categories/add',{category:category})
 })
 
 router.post('/',async(req,res)=>
@@ -37,7 +37,7 @@ router.post('/',async(req,res)=>
     }
 })
 /*--------------------------------------------Delete*/
-router.get('/delete/:id',async(req,res)=>
+router.post('/delete/:id',async(req,res)=>
 {
     try{
         const categoryDelete = await categoryModel.findById(req.params.id)
