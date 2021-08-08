@@ -1,24 +1,36 @@
 <div class="container mt-5">
-    <center>
-        <h1 style="color: green">List Categories</h1>
-    </center>
-    <a href="/category/add" type="button" class="btn btn-outline-success">Add New Category</a> <br>
-    <hr>
-    <table class="table table-success table-striped">
-        <tr>
-            <th>Name</th>
-
-            <th>Edit</th>
-
-            <th>Delete</th>
-
-        </tr>
-        <tr>
-            <td>Name</td>
-
-            <td>Edit</td>
-
-            <td>Delete</td>
-        </tr>
-    </table>
+    <a href="/category/add" type="button" class="btn btn-success">Add New Category</a> <br>
+    <div class="conntainer mt-4">
+        <h3>List cart</h3>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Image</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+                <%
+                cart.map(x =>{%>
+                        <tr>
+                        <th scope="row"><%=x.item.name%></th>
+                        <td scope="row"><%=x.item.price%></td>
+                        <td scope="row"><img src="<%=x.imageSrc%>" alt="" width="70px"></td>
+                        <td scope="row"><a href="" class="btn btn-secondary">Edit</a></td>
+                        <td scope="row">
+                         
+                                <%-include('../parts/formDelete',{url:`/cart/delete/${x.id}`})%>
+                             
+                        </td>
+                      </tr>
+                    <%})
+                %>
+              
+            
+            </tbody>
+          </table>
+    </div>  
 </div>

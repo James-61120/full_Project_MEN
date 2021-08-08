@@ -1,26 +1,29 @@
 const express=require('express')
 const productModel=require('../models/product.model')
-const cartModel = require()
-const router=express.Router('../models/cart.model')
+const cartModel = require('../models/cart.model')
+const router=express.Router()
 
 router.get('/',async(req,res)=>{
     try{
-        console.log(req.session.cart)
-        res.render('carts/cart')
+        const cart = req.session.cart.items
+        res.render('carts/cart',{cart:cart})
     }catch(e){
         console.log(e)
         res.redirect('/')
     }  
 })
 
-router.get('/add/:id',(req,res)=>{
+router.get('/add/:id',async(req,res)=>{
     try{
-        // const id=req.params.id
-        // const product=await productModel.find({price:30000})
- 
-        const cart=new cartModel()
-        cart.add("meo",1)
-        req.session.cart=cart
+        const product = await productModel.findById(req.params.id)
+        let items_old = []
+        if(req.session.cart)
+        {
+            items_old = req.session.cart.items
+        }
+        const cart = new cartModel(items_old)
+        cart.add(product,req.params.id,product.imageSrc)
+        req.session.cart = cart
         res.redirect('/cart')
     }catch(e){
         console.log(e.message)
@@ -29,4 +32,22 @@ router.get('/add/:id',(req,res)=>{
     
 })
 
-module.exports=router
+router.post('/delete/:id',(req,res)=>{
+    try{
+        let items_old = []
+        if(req.session.cart)
+        {
+            items_old = req.session.cart.items
+        }
+        const cart = new cartModel(items_old)
+        cart.delete(req.params.id)
+        req.session.cart = cart
+        res.redirect('/cart')
+    }catch(e){
+        console.log(e.message)
+        res.redirect('/')
+    }
+    
+})
+
+module.exports = router
