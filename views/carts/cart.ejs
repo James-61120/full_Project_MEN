@@ -1,5 +1,4 @@
 <div class="container mt-5">
-    <a href="/category/add" type="button" class="btn btn-success">Add New Category</a> <br>
     <div class="conntainer mt-4">
         <h3>List cart</h3>
         <table class="table">
@@ -8,7 +7,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Price</th>
                 <th scope="col">Image</th>
-                <th scope="col">Edit</th>
+                <th scope="col">Quantity</th>
                 <th scope="col">Delete</th>
               </tr>
             </thead>
@@ -19,7 +18,16 @@
                         <th scope="row"><%=x.item.name%></th>
                         <td scope="row"><%=x.item.price%></td>
                         <td scope="row"><img src="<%=x.imageSrc%>" alt="" width="70px"></td>
-                        <td scope="row"><a href="" class="btn btn-secondary">Edit</a></td>
+                        <td scope="row">
+                         
+                            <a href="/cart/increase/<%=x.item._id%>" class="btn btn-dark">+</a>
+                        
+                          <%=x.quantity%>
+                       
+                            <a href="/cart/reduce/<%=x.item._id%>" class="btn btn-dark">-</a>
+                   
+                         
+                        </td>
                         <td scope="row">
                          
                                 <%-include('../parts/formDelete',{url:`/cart/delete/${x.id}`})%>
@@ -27,10 +35,11 @@
                         </td>
                       </tr>
                     <%})
-                %>
-              
-            
+                %>           
             </tbody>
           </table>
     </div>  
+    <div class="container total">
+      <h4>Tổng tiền: </h4>
+    </div>
 </div>
