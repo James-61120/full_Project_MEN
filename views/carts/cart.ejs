@@ -14,23 +14,25 @@
             <tbody>
                 <%
                 cart.map(x =>{%>
-                        <tr>
+                        <tr id="tr_cart_<%= x.id %>">
                         <th scope="row"><%=x.item.name%></th>
                         <td scope="row"><%=x.item.price%></td>
                         <td scope="row"><img src="<%=x.imageSrc%>" alt="" width="70px"></td>
                         <td scope="row">
                          
-                            <a href="/cart/increase/<%=x.item._id%>" class="btn btn-dark">+</a>
-                        
-                          <%=x.quantity%>
+                            <a href="/cart/increase/<%=x.item._id%>" class = "increaseCart" id="<%=x.item._id%>"><i class="fas fa-plus"></i></a>
+                          <span id="qty<%=x.item._id%>"><span id="qty2<%=x.item._id%>"><%=x.quantity%></span></span> 
+                          
                        
-                            <a href="/cart/reduce/<%=x.item._id%>" class="btn btn-dark">-</a>
+                            <a href="/cart/reduce/<%=x.item._id%>" class = "reduceCart" id="<%=x.item._id%>"><i class="fas fa-minus"></i></a>
                    
                          
                         </td>
                         <td scope="row">
                          
-                                <%-include('../parts/formDelete',{url:`/cart/delete/${x.id}`})%>
+                          <form action="/cart/delete/<%=x.item._id%>" method = "POST" class="deleteFormCart" data-id="<%=x.item._id%>">
+                            <button type="submit" class="btn btn-dark">Delete</button>
+                          </form>
                              
                         </td>
                       </tr>
@@ -40,6 +42,6 @@
           </table>
     </div>  
     <div class="container total">
-      <h4>Tổng tiền: </h4>
+      <h4>Tổng tiền: <span id="total1"><span id="total2"><%=total%></span></span></h4>
     </div>
 </div>

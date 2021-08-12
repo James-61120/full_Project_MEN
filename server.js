@@ -2,6 +2,7 @@ const express = require('express')
 const indexRouter = require('./routers/index')
 const categoryRouter = require('./routers/category')
 const cartRouter = require('./routers/cart')
+const userRouter = require('./routers/user')
 const productRouter = require('./routers/product')
 const expressLayouts = require('express-ejs-layouts')
 const methodOverride = require('method-override')
@@ -37,11 +38,17 @@ app.use(session({
     saveUninitialized: true,
     cookie:  { maxAge: 60*60*1000}
   }))
+
+app.use((req, res, next) => {
+    res.locals.session = req.session;
+    next();
+  })
 app.use(methodOverride('_method'))
 app.use(expressLayouts)
 app.use('/', indexRouter)
 app.use('/category',categoryRouter)
 app.use('/cart',cartRouter)
+app.use('/user',userRouter)
 app.use('/product',productRouter)
 app.use(express.static('public'))
 

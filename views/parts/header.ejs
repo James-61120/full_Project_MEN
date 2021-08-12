@@ -15,6 +15,34 @@
           <li class="nav-item">
             <a class="nav-link" href="/category">Category</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/cart"><i class="fas fa-shopping-cart"></i>
+              <span id="infoNumber">
+                <span id="numberCart">(
+                  <%
+                  if(session.cart){%>
+                      <%= session.cart.items.length %>
+                    <%}
+                    else{%>
+                      0
+                  <%}
+                   %>
+                )</span>
+              </span>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              User
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="/user/login">Login</a></li>
+              <li><a class="dropdown-item" href="/user/logout">Log out</a></li>
+              <li><a class="dropdown-item" href="/user/profile">Profile</a></li>
+              <li><a class="dropdown-item" href="/user/register">Register</a></li>
+              <li><a class="dropdown-item" href="/user">List User</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>

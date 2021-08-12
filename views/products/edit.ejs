@@ -18,10 +18,17 @@
             <label for="floatingInput">Information</label>
           </div>
           <div class="form-floating mb-3">
-           <select name="category">
+           <select name="category" class="form-select">
               <%
                 categories.map(cate=>{%>
-                    <option value="<%= cate._id%>"><%=cate.name%></option>
+                  <%
+                  if(cate._id==products.category){%>
+                    <option selected value="<%= cate._id%>"><%=cate.name%></option>
+                    <%}
+                  else{%>
+                    <option selected value="<%= cate._id%>"><%=cate.name%></option>
+                    <%}
+                  %>   
                   <%})
               %>
            </select>

@@ -79,7 +79,7 @@ router.get('/edit/:id',async(req,res)=>{
 
 router.put('/edit/:id',async(req,res)=>{
     try{
-            const categories = await categoryModel.find()
+           
             const product = await productModel.findById(req.params.id)
             product.name = req.body.name,
             product.price = req.body.price,

@@ -65,10 +65,9 @@ router.get('/edit/:id',async(req,res)=>{
 })
 router.put('/edit/:id',async(req,res)=>{
     try{
-        const categoryNew=new categoryModel({
-            name:req.body.name
-        })
-        await categoryNew.save()
+        const category = await categoryModel.findById(req.params.id)
+        category.name = req.body.name
+        await category.save()
         res.redirect('/category')
     }catch(e){
         console.log(e)

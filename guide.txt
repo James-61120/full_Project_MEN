@@ -5,3 +5,4 @@
 
  5. npm install express mongodb ejs
  6.npm install express-ejs-layouts
+ 7.npm install bcrypt
